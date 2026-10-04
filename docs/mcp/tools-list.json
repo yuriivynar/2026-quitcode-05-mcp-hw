@@ -1,0 +1,83 @@
+{
+  "tools": [
+    {
+      "name": "leaddesk_find_leads",
+      "title": "Пошук лідів LeadDesk",
+      "description": "Повертає ліди LeadDesk за статусом, найновіші першими (за датою заявки). Для кожного ліда — лише id, компанія, статус, джерело, бюджет і дата заявки; імен, email і текстів заявок інструмент не віддає. Застосовуй, щоб побачити, хто в роботі, порахувати ліди чи бюджет за статусом або знайти id ліда перед зміною статусу. У відповіді total — скільки лідів відповідає фільтру; якщо total більший за кількість показаних, повтори з більшим limit. Назви компаній можуть повторюватися — розрізняй ліди за id. Що означає кожен статус — у ресурсі leaddesk://reference/statuses. Тільки читає.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "new",
+              "contacted",
+              "qualified",
+              "won",
+              "lost",
+              "any"
+            ],
+            "description": "Статус, за яким шукати: new, contacted, qualified, won або lost; any — усі статуси"
+          },
+          "limit": {
+            "default": 10,
+            "description": "Скільки лідів повернути, від 1 до 50; за замовчуванням 10. Найновіші — першими",
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false
+      }
+    },
+    {
+      "name": "leaddesk_set_lead_status",
+      "title": "Зміна статусу ліда LeadDesk",
+      "description": "Змінює дані: переводить один лід LeadDesk у новий статус і створює запис в аудиті з причиною. Викликай лише після підтвердження людини: пряме прохання людини змінити статус саме цього ліда вже є підтвердженням; якщо зміну пропонуєш ти сам — спершу спитай і назви id ліда, компанію, поточний і новий статус. id бери з leaddesk_find_leads, не вгадуй. Якщо лід уже має цей статус, інструмент поверне помилку й нічого не змінить. Що означає кожен статус і хто його ставить — у ресурсі leaddesk://reference/statuses.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "leadId": {
+            "type": "string",
+            "pattern": "^lead_\\d{4}$",
+            "description": "Ідентифікатор ліда: lead_ і чотири цифри, напр. lead_0002. Бери з результату leaddesk_find_leads"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "new",
+              "contacted",
+              "qualified",
+              "won",
+              "lost"
+            ],
+            "description": "Новий статус: new, contacted, qualified, won або lost. Має відрізнятися від поточного"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 500,
+            "description": "Чому змінюємо статус, 3–500 символів, напр. «зателефонували, домовились про бриф». Потрапляє в аудит — не пиши сюди email, телефони чи інші персональні дані"
+          }
+        },
+        "required": [
+          "leadId",
+          "status",
+          "reason"
+        ],
+        "$schema": "https://json-schema.org/draft/2020-12/schema"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false
+      }
+    }
+  ]
+}
