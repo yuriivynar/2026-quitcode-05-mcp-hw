@@ -45,6 +45,11 @@ $I --method resources/read --uri leaddesk://reference/statuses
 ```bash
 REPO="$(pwd -W)"      # у macOS/Linux — REPO="$(pwd)"
 claude mcp add leaddesk -- node "$REPO/mcp/leaddesk-server/src/server.mjs"
+```
+
+Прибрати сервер, коли він більше не потрібен:
+
+```bash
 claude mcp remove leaddesk
 ```
 

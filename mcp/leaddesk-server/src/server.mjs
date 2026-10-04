@@ -79,6 +79,7 @@ const newStatus = z
   .describe("Новий статус: new, contacted, qualified, won або lost. Має відрізнятися від поточного");
 const reason = z
   .string()
+  .trim()
   .min(3)
   .max(500)
   .describe(

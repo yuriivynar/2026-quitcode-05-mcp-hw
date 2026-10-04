@@ -12,5 +12,6 @@ create table public.leads (
   created_at timestamptz not null default now()
 );
 
--- RLS увімкнено без політик: анонімний доступ закритий, працює лише service role.
+-- RLS увімкнено без політик: ролі anon і authenticated не бачать жодного рядка;
+-- service_role і власник таблиці обходять RLS.
 alter table public.leads enable row level security;

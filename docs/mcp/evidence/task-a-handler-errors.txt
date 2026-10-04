@@ -1,0 +1,29 @@
+# Task A: помилки обробника (isError: true, які видає сам сервер, а не перевірка схеми SDK).
+# Справжній вивід Inspector 2.8.0 (stdout і stderr разом), Git Bash, з кореня репозиторію.
+# Кожен виклик запускає сервер заново, тож lead_0002 щоразу має статус new.
+
+$ ... --method tools/call --tool-name leaddesk_set_lead_status --tool-arg leadId=lead_0099 --tool-arg status=won --tool-arg reason=перевірка
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Ліда lead_0099 у LeadDesk немає, статус не змінено. Знайди правильний id через leaddesk_find_leads (status \"any\", за потреби limit до 50) — назви компаній можуть повторюватися, тож звіряй за id."
+    }
+  ],
+  "isError": true
+}
+{"error":{"code":"tool_is_error","message":"Tool 'leaddesk_set_lead_status' returned isError:true."}}
+exit=5
+
+$ ... --method tools/call --tool-name leaddesk_set_lead_status --tool-arg leadId=lead_0002 --tool-arg status=new --tool-arg reason=перевірка
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "Лід lead_0002 (Rynok Books) уже має статус new. Нічого не змінено, запис в аудит не створено. Якщо йшлося про інший статус чи інший лід — перевір через leaddesk_find_leads."
+    }
+  ],
+  "isError": true
+}
+{"error":{"code":"tool_is_error","message":"Tool 'leaddesk_set_lead_status' returned isError:true."}}
+exit=5

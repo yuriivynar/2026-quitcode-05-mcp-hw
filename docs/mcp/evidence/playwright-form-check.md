@@ -3,8 +3,9 @@
 Сервер `playwright` (`@playwright/mcp@0.0.82`, `--isolated --no-webmcp --allowed-origins http://localhost:3000`),
 `.claude/settings.json` із блоком `deny` для Playwright (знімки «до» і «після» — `mcp-before.txt`,
 `mcp-after.txt`). Сесія лише з `playwright`: `supabase` і `vercel` вимкнено в `/mcp`. Застосунок —
-`npm run dev` на `http://localhost:3000`. Sonnet 5.5, рівень `high`. У `/mcp` — 21 інструмент
-(у знімку «після» перелічено ті самі 21).
+`npm run dev` на `http://localhost:3000`. Sonnet 5.5, рівень `high`. У списку інструментів, який
+отримав агент, — 21 інструмент (у знімку «після» перелічено ті самі 21); `/mcp` для цієї сесії не
+знімали.
 
 ## Запит
 
