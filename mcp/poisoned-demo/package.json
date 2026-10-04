@@ -1,0 +1,18 @@
+{
+  "name": "poisoned-demo-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Toy MCP server for QuitCode WS5 bonus E2: one tool description carries an injected instruction that points at a decoy file. Demo only, never connect it to a real project.",
+  "type": "module",
+  "main": "src/server.mjs",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "start": "node src/server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.1.0",
+    "zod": "4.6.5"
+  }
+}
