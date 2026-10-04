@@ -4,7 +4,7 @@
 > `docs/walkthrough.md`. A/B — в окремому звіті `docs/mcp/ab-generic-vs-domain.md`, threat model — у
 > `docs/mcp/threat-model.md`.
 
-- **Інструмент і версія, модель:** Claude Code 2.1.283 · сесії агентів — Sonnet 5.5 (`claude-sonnet-5-5`), рівень `high`; Inspector 2.8.0
+- **Інструмент і версія, модель:** Claude Code 2.1.289 (сесія входу — 2.1.283, далі інструмент оновився) · сесії агентів — Sonnet 5.5 (`claude-sonnet-5-5`), рівень `high`; Inspector 2.8.0
 - **ОС і термінал, Node:** Windows 11 · Git Bash (артефакти Inspector'а) і PowerShell · Node v24.12.0
 
 ## Task A — сервер в Inspector
