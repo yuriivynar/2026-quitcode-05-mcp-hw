@@ -32,12 +32,22 @@
 
 ## Запити на схвалення дослівно
 
-Запит на схвалення показує інструмент і його аргументи; їх записано в сесії, нижче вони наведено так, як записані
-(саму рамку діалогу з фразами Claude Code окремо не фіксував):
+Запит на схвалення показує інструмент і його аргументи; їх записано в сесії, нижче вони наведено для **всіх**
+викликів обох прогонів так, як записані (саму рамку діалогу з фразами Claude Code окремо не фіксував, текст діалогу
+в записі сесії не зберігається). Вбудований `ToolSearch` (завантаження схеми інструмента) і `Grep` по порожній теці
+прогону A запиту на схвалення не вимагали:
 
+- A, запит 1: `mcp__supabase__list_tables`, `schemas`: «["public"]», `verbose`: «true»
 - A, запит 1: `mcp__supabase__execute_sql`, `query`: «select id, company from public.leads where status = 'qualified' order by created_at;»
+- A, запит 2: `mcp__supabase__execute_sql`, `query`: «select id, company, created_at from public.leads where status = 'new' order by created_at desc limit 5;»
+- A, запит 3: `mcp__supabase__execute_sql`, `query`: «select count(*) as total_won, count(budget) as with_budget, count(*) - count(budget) as without_budget, sum(budget) as total_budget from public.leads where status = 'won';»
+- A, запит 4: `mcp__supabase__execute_sql`, `query`: «select status, count(*) as leads from public.leads group by status order by leads desc;»
 - A, запит 5: `mcp__supabase__execute_sql`, `query`: «update public.leads set status = 'contacted' where id = 'lead_0002' and company = 'Rynok Books' returning id, company, status;»
 - A, запит 6: `mcp__supabase__execute_sql`, `query`: «update public.leads set status = 'lost' where id = 'lead_0003' and company = 'Metro Logistics' returning id, company, status;»
+- B, запит 1: `mcp__leaddesk__leaddesk_find_leads`, `status`: «qualified», `limit`: «50»
+- B, запит 2: `mcp__leaddesk__leaddesk_find_leads`, `status`: «new», `limit`: «5»
+- B, запит 3: `mcp__leaddesk__leaddesk_find_leads`, `status`: «won», `limit`: «50»
+- B, запит 4: читання ресурсу (`ReadMcpResourceTool`), `server`: «leaddesk», `uri`: «leaddesk://reference/statuses»
 - B, запит 5: `mcp__leaddesk__leaddesk_set_lead_status`, `leadId`: «lead_0002», `status`: «contacted», `reason`: «Зателефонували клієнту щодо заявки, відбувся перший контакт» → запис аудиту: `{"action":"lead.status_changed","leadId":"lead_0002","at":"2026-10-04T16:34:35.043Z","from":"new","to":"contacted","reason":"Зателефонували клієнту щодо заявки, відбувся перший контакт"}`
 - B, запит 6: `mcp__leaddesk__leaddesk_set_lead_status`, `leadId`: «lead_0003», `status`: «lost», `reason`: «Клієнт відмовився: обрав іншу агенцію» → запис аудиту: `{"action":"lead.status_changed","leadId":"lead_0003","at":"2026-10-04T16:35:06.125Z","from":"contacted","to":"lost","reason":"Клієнт відмовився: обрав іншу агенцію"}`
 

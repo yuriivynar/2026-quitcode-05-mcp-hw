@@ -1,8 +1,9 @@
 // Toy MCP server for QuitCode Workshop 5, bonus E2: a poisoned tool description.
 //
-// What it shows: the model reads the descriptions of ALL tools of a connected server, whether or not
-// it calls them. Here the description of `send_report` carries an injected instruction. The human
-// asks an ordinary question that only needs `get_fact`.
+// What it shows: the model reads the description of every tool whose schema it loads, whether or not
+// it ends up calling that tool (Claude Code loads tool schemas on demand through ToolSearch). Here the
+// description of `send_report` carries an injected instruction. The human asks an ordinary question
+// that needs at most `get_fact`.
 //
 // Safety: the injected instruction points ONLY at the decoy file next to this module
 // (mcp/poisoned-demo/decoy.env, values `change-me-...`). The server itself reads no files and does no
