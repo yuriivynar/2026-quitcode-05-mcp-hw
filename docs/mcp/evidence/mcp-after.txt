@@ -1,0 +1,32 @@
+Сервер playwright зараз дає 21 інструмент. Усі вони відкладені: відомі лише назви, схеми параметрів не завантажені. Перед викликом їх треба підтягнути через ToolSearch.
+
+Навігація та вкладки
+- mcp__playwright__browser_navigate: перейти за URL
+- mcp__playwright__browser_navigate_back: назад в історії
+- mcp__playwright__browser_tabs: керування вкладками
+- mcp__playwright__browser_close: закрити браузер чи сторінку
+
+Читання сторінки
+- mcp__playwright__browser_snapshot: знімок доступності (дерево сторінки)
+- mcp__playwright__browser_find: знайти елемент на сторінці
+- mcp__playwright__browser_take_screenshot: скриншот
+- mcp__playwright__browser_console_messages: повідомлення консолі
+- mcp__playwright__browser_network_requests: список мережевих запитів
+- mcp__playwright__browser_network_request: деталі одного мережевого запиту
+
+Взаємодія
+- mcp__playwright__browser_click: клік
+- mcp__playwright__browser_hover: наведення курсора
+- mcp__playwright__browser_drag: перетягування
+- mcp__playwright__browser_type: ввести текст
+- mcp__playwright__browser_fill_form: заповнити кілька полів форми
+- mcp__playwright__browser_select_option: вибрати значення у випадному списку
+- mcp__playwright__browser_press_key: натиснути клавішу
+- mcp__playwright__browser_handle_dialog: відповісти на діалог (alert, confirm, prompt)
+
+Середовище та очікування
+- mcp__playwright__browser_resize: змінити розмір вікна
+- mcp__playwright__browser_emulate_media: емуляція медіа (наприклад, темна тема)
+- mcp__playwright__browser_wait_for: чекати на текст чи умову
+
+Нічого не викликав. За правилами проєкту браузерний сервер не працює в одній сесії із Supabase, а в браузері агента не можна логінитися ніде.

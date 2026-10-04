@@ -1,0 +1,41 @@
+# Відповідь агента дослівно: сесія лише з playwright, блоку deny для playwright у .claude/settings.json ще немає.
+# Примітка: у першому реченні агент помилково написав «22 інструменти»; у переліку нижче їх 25, стільки ж показує /mcp.
+
+Сервер playwright зараз дає 22 інструменти. Усі вони відкладені: відомі лише назви, а схеми параметрів не завантажені. Перед викликом їх треба завантажити через ToolSearch.
+
+Навігація та вкладки
+- browser_navigate: відкрити URL
+- browser_navigate_back: повернутися назад
+- browser_tabs: керування вкладками
+- browser_close: закрити браузер
+- browser_resize: змінити розмір вікна
+
+Огляд сторінки
+- browser_snapshot: знімок доступності сторінки
+- browser_take_screenshot: скриншот
+- browser_find: пошук елементів
+- browser_console_messages: повідомлення консолі
+- browser_network_requests: список мережевих запитів
+- browser_network_request: деталі одного запиту
+
+Взаємодія
+- browser_click: клік
+- browser_hover: наведення
+- browser_drag: перетягування
+- browser_drop: скидання
+- browser_type: введення тексту
+- browser_press_key: натискання клавіші
+- browser_fill_form: заповнення форми
+- browser_select_option: вибір опції у списку
+- browser_file_upload: завантаження файлу
+- browser_handle_dialog: обробка діалогів
+
+Очікування та емуляція
+- browser_wait_for: чекати на текст чи подію
+- browser_emulate_media: емуляція медіа-параметрів, наприклад темної теми
+
+Виконання коду
+- browser_evaluate: виконати JS на сторінці
+- browser_run_code_unsafe: виконати довільний код Playwright
+
+Нічого не викликав. Згідно з правилами проєкту, браузерний сервер не можна використовувати в одній сесії із Supabase, і в браузері агента не можна логінитися.
